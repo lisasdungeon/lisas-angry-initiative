@@ -47,7 +47,7 @@ export async function initializeCombatant(moduleApi, combatant) {
 
     let initiativeDie = getFlag(combatant, FLAGS.INITIATIVE_DIE);
     if (!initiativeDie) {
-        initiativeDie = moduleApi.getInitiativeDieBySize(combatant.actor);
+        initiativeDie = getInitiativeDieBySize(combatant.actor);
         await setFlag(combatant, FLAGS.INITIATIVE_DIE, initiativeDie);
     }
 
