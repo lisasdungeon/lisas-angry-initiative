@@ -1,95 +1,161 @@
 /**
- * Lisa's Angry Initiative - Main Class
+ * Lisa's Angry Initiative - Core Class
  * @module lisas-angry-initiative-class
  * @author Lisa's Dungeon
  * @license Proprietary
  */
 
-import { MODULE_INFO, DEFAULT_SETTINGS } from './constants.js';
-import { recoverySystem } from './recovery.js';
-import { phaseVariantsSystem } from './phase-variants.js';
-import { customRecoveryTablesSystem } from './custom-recovery-tables.js';
-import { integrationHooksSystem } from './integration-hooks.js';
-import { phaseIndicatorsSystem } from './phase-indicators.js';
+import { FLAGS, MODULE_INFO, SETTINGS } from "./constants.js";
+import { downsizeDie, getInitiativeDieBySize, getRecoveryDie, upsizeDie } from "./dice-utils.js";
+import {
+    onCombatEnd,
+    onCombatStart,
+    onCombatUpdate,
+    onCombatantUpdate,
+    onCreateCombatant
+} from "./combat-handlers.js";
+import { clearAllFlags, getFlag, setFlag, setPhase } from "./flag-manager.js";
+import { promptRecoveryRoll, rollRecovery } from "./recovery.js";
+import { registerSettings, onRenderChatMessageAttack, onRenderCombatTracker } from "./ui-handlers.js";
+import { format } from "./i18n.js";
 
-class LisasAngryInitiative {
-  constructor() {
-    this.id = MODULE_INFO.id;
-    this.title = MODULE_INFO.title;
-    this.version = MODULE_INFO.version;
-    this.active = false;
+export default class LisasAngryInitiative {
+    static FLAGS = FLAGS;
+    static SETTINGS = SETTINGS;
+    static isInitialized = false;
 
-    this.recovery = recoverySystem;
-    this.variants = phaseVariantsSystem;
-    this.tables = customRecoveryTablesSystem;
-    this.hooks = integrationHooksSystem;
-    this.indicators = phaseIndicatorsSystem;
-  }
+    static activate() {
+        if (!this.isInitialized) {
+            this.init();
+        }
+        ui.notifications.info(format("Notifications.ModuleActive", { title: MODULE_INFO.title }));
+    }
 
-  /**
-   * Activate the module
-   */
-  static async activate() {
-    console.log(`Lisa's Angry Initiative v${MODULE_INFO.version} activated`);
-  }
+    static init() {
+        if (this.isInitialized) return;
 
-  /**
-   * Get full API surface
-   */
-  getAPI() {
-    return {
-      // Recovery
-      getRecoveryDie: (actionType, opts) => this.recovery.getRecoveryDie(actionType, opts),
-      getInitiativeDieBySize: (actor) => this.recovery.getInitiativeDieBySize(actor),
-      upsizeDie: (die) => this.recovery.upsizeDie(die),
-      downsizeDie: (die) => this.recovery.downsizeDie(die),
-      applyAdvancedModifiers: (die, combatant, opts) => this.recovery.applyAdvancedModifiers(die, combatant, opts),
-      rollRecovery: (combatant, actionType, opts) => this.recovery.rollRecovery(combatant, actionType, opts),
-      getHistory: (combatantId, limit) => this.recovery.getHistory(combatantId, limit),
-      clearHistory: (combatantId) => this.recovery.clearHistory(combatantId),
-      clearAllHistory: () => this.recovery.clearAllHistory(),
+        registerSettings(this);
+        this.registerHooks();
+        this.registerApi();
+        this.isInitialized = true;
 
-      // Phase Variants
-      getActiveVariant: () => this.variants.getActiveVariant(),
-      setActiveVariant: (variantId) => this.variants.setActiveVariant(variantId),
-      getAllVariants: () => this.variants.getAllVariants(),
-      createCustomVariant: (variantId, config) => this.variants.createCustomVariant(variantId, config),
-      deleteCustomVariant: (variantId) => this.variants.deleteCustomVariant(variantId),
-      getPhaseCount: () => this.variants.getPhaseCount(),
-      constrainPhase: (phase) => this.variants.constrainPhase(phase),
-      constrainRecovery: (rollResult) => this.variants.constrainRecovery(rollResult),
+        console.log(`Lisa's Angry Initiative | ${MODULE_INFO.title} ready`);
+    }
 
-      // Custom Recovery Tables
-      createTable: (tableId, config) => this.tables.createTable(tableId, config),
-      getRecoveryDieFromTable: (tableId, actionType) => this.tables.getRecoveryDieFromTable(tableId, actionType),
-      getAllTables: () => this.tables.getAllTables(),
-      deleteTable: (tableId) => this.tables.deleteTable(tableId),
-      updateTableRules: (tableId, rules) => this.tables.updateTableRules(tableId, rules),
+    static registerApi() {
+        const module = game.modules.get("lisas-angry-initiative");
+        if (!module) return;
 
-      // Integration Hooks
-      registerHook: (hookId, handler) => this.hooks.registerHook(hookId, handler),
-      fireHook: (hookId, context) => this.hooks.fireHook(hookId, context),
-      unregisterHook: (hookId, handler) => this.hooks.unregisterHook(hookId, handler),
-      getAllHooks: () => this.hooks.getAllHooks(),
+        module.api = {
+            getRecoveryDie,
+            getInitiativeDieBySize,
+            upsizeDie,
+            downsizeDie,
+            applyAdvancedModifiers: this.applyAdvancedModifiers.bind(this),
+            getFlag: this.getFlag.bind(this),
+            setFlag: this.setFlag.bind(this),
+            setPhase: this.setPhase.bind(this),
+            rollRecovery: this.rollRecovery.bind(this),
+            promptRecoveryRoll: this.promptRecoveryRoll.bind(this),
+            resetSettings: this.resetSettings.bind(this),
+            cleanup: this.cleanup.bind(this)
+        };
+    }
 
-      // Phase Indicators
-      getTokenIndicator: (tokenId) => this.indicators.getTokenIndicator(tokenId),
-      setTokenIndicator: (tokenId, phase) => this.indicators.setTokenIndicator(tokenId, phase),
-      removeTokenIndicator: (tokenId) => this.indicators.removeTokenIndicator(tokenId),
-      getAllIndicators: () => this.indicators.getAllIndicators(),
-      createPhaseDisplayUI: () => this.indicators.createPhaseDisplayUI(),
+    static registerHooks() {
+        Hooks.on("createCombat", (...args) => onCombatStart(this, ...args));
+        Hooks.on("createCombatant", (...args) => onCreateCombatant(this, ...args));
+        Hooks.on("deleteCombat", (...args) => onCombatEnd(this, ...args));
+        Hooks.on("updateCombat", (...args) => onCombatUpdate(this, ...args));
+        Hooks.on("updateCombatant", (...args) => onCombatantUpdate(this, ...args));
+        Hooks.on("renderCombatTracker", (...args) => onRenderCombatTracker(this, ...args));
+        Hooks.on("renderChatMessage", (...args) => onRenderChatMessageAttack(this, ...args));
+    }
 
-      // Module info
-      getVersion: () => this.version,
-      getStatistics: () => ({
-        recovery: this.recovery.getStatistics(),
-        variants: this.variants.getStatistics(),
-        tables: this.tables.getStatistics(),
-        hooks: this.hooks.getStatistics(),
-        indicators: this.indicators.getStatistics(),
-      }),
-    };
-  }
+    static getFlag(combatant, flagKey) {
+        return getFlag(combatant, flagKey);
+    }
+
+    static async setFlag(combatant, flagKey, value) {
+        return setFlag(combatant, flagKey, value);
+    }
+
+    static async setPhase(combatant, phase, isNext = false) {
+        return setPhase(combatant, phase, isNext);
+    }
+
+    static async rollRecovery(combatant, actionType, options = {}) {
+        return rollRecovery(this, combatant, actionType, options);
+    }
+
+    static async promptRecoveryRoll(combatant, lastAction, options = {}) {
+        return promptRecoveryRoll(this, combatant, lastAction, options);
+    }
+
+    static applyAdvancedModifiers(die, combatant, options = {}) {
+        let result = die;
+
+        if (options.bonusAction) {
+            result = upsizeDie(result);
+        }
+
+        if (options.checkedAttack || options.isCheckedAttack) {
+            result = downsizeDie(result);
+        }
+
+        if (combatant && options.applyConditions) {
+            const conditions = combatant.actor?.statuses || [];
+            const CONDITION_MODIFIERS = {
+                stunned: { dieAdjustment: -2 },
+                paralyzed: { dieAdjustment: -2 },
+                exhaustion: { dieAdjustment: -1 },
+                prone: { dieAdjustment: 0 },
+                restrained: { dieAdjustment: -1 },
+                inspired: { dieAdjustment: 1 },
+                blessed: { dieAdjustment: 1 },
+                haste: { dieAdjustment: 1 }
+            };
+
+            for (const condition of conditions) {
+                const mod = CONDITION_MODIFIERS[condition];
+                if (mod) {
+                    for (let i = 0; i < Math.abs(mod.dieAdjustment); i++) {
+                        if (mod.dieAdjustment > 0) {
+                            result = upsizeDie(result);
+                        } else {
+                            result = downsizeDie(result);
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    static async resetSettings() {
+        const defaults = new Map([
+            [SETTINGS.ENABLE_CORE, true],
+            [SETTINGS.AUTO_SIZE_INIT_DIE, true],
+            [SETTINGS.BLOCK_REACTIONS, true],
+            [SETTINGS.KNOCKBACK_THRESHOLD, 0],
+            [SETTINGS.SHOW_PHASE_VISUALS, true]
+        ]);
+
+        for (const [key, value] of defaults.entries()) {
+            await game.settings.set("lisas-angry-initiative", key, value);
+        }
+
+        ui.notifications.info(format("Notifications.SettingsReset", { title: MODULE_INFO.title }));
+    }
+
+    static async cleanup() {
+        if (!game.combat) return;
+
+        for (const combatant of game.combat.combatants) {
+            await clearAllFlags(combatant);
+        }
+
+        ui.notifications.info(format("Notifications.CleanupComplete", { title: MODULE_INFO.title }));
+    }
 }
-
-export default new LisasAngryInitiative();

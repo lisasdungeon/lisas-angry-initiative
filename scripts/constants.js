@@ -83,6 +83,23 @@ export const PHASE_VARIANTS = {
   },
 };
 
+export const FLAGS = {
+  CURRENT_PHASE: 'currentPhase',
+  NEXT_PHASE: 'nextPhase',
+  RECOVERING: 'recovering',
+  LAST_ACTION: 'lastAction',
+  INITIATIVE_DIE: 'initiativeDie',
+  PROMPT_LOCK: 'promptLock',
+};
+
+export const SETTINGS = {
+  ENABLE_CORE: 'enableCore',
+  AUTO_SIZE_INIT_DIE: 'autoSizeInitDie',
+  BLOCK_REACTIONS: 'blockReactionsWhileRecovering',
+  KNOCKBACK_THRESHOLD: 'knockbackThreshold',
+  SHOW_PHASE_VISUALS: 'showPhaseVisuals'
+};
+
 export const DEFAULT_SETTINGS = {
   enableModule: true,
   enableAdvancedModifiers: true,
