@@ -2,7 +2,7 @@
     "id": "lisas-angry-initiative",
     "title": "Lisa's Angry Initiative",
     "description": "Recovery Time Initiative v2 for Foundry VTT and D&D5e with advanced modifiers, phase variants, custom recovery tables, and integration hooks.",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "compatibility": {
         "minimum": 13,
         "verified": 14

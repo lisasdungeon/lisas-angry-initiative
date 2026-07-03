@@ -1,6 +1,6 @@
 {
   "name": "lisas-angry-initiative",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Recovery Time Initiative v2 for Foundry VTT and D&D5e with advanced modifiers, phase variants, custom recovery tables, and integration hooks.",
   "type": "module",
   "main": "scripts/lisas-angry-initiative.js",
