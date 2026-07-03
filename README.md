@@ -62,9 +62,9 @@ Custom module developers can hook into any stage of combat flow.
 
 ## Screenshots
 
-![Combat Tracker Integration](Lisa's%20Angry%201.jpeg)
-![Recovery Roll Dialog](Lisa's%20Angry%202.jpeg)
-![Phase Display](Lisa's%20Angry%203.jpeg)
+![Combat Tracker Integration](screenshots/1.jpeg)
+![Recovery Roll Dialog](screenshots/2.jpeg)
+![Phase Display](screenshots/3.jpeg)
 
 ## Current compatibility
 
