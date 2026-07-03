@@ -32,11 +32,10 @@
       "Attack": "Attack",
       "Cantrip": "Cantrip",
       "Spell": "Spell",
-      "Dash": "Dash",
-      "Disengage": "Disengage",
-      "Dodge": "Dodge",
-      "Hide": "Hide",
-      "Ready": "Ready",
+      "Action": "Action",
+      "BonusAction": "Bonus Action",
+      "Reaction": "Reaction",
+      "Movement": "Movement",
       "Other": "Other"
     },
     "Dialogs": {
