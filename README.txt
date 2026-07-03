@@ -1,5 +1,5 @@
 ================================================================================
-LISA'S ANGRY INITIATIVE v2.0.0
+LISA'S ANGRY INITIATIVE v2.0.1
 ================================================================================
 
 Recovery Time Initiative v2 for Foundry VTT and D&D5e — Now free and open-source!
@@ -199,8 +199,12 @@ Discord: MystryssLysa
 LICENSE
 ================================================================================
 
-This project is licensed under the MIT License. See LICENSE file for details.
+This project is free and open-source software licensed under the MIT License.
+See the LICENSE file for full details.
+
+MIT License grants you the freedom to use, modify, and distribute this software
+for any purpose, provided the copyright notice and license text are included.
 
 ================================================================================
 
-Lisa's Angry Initiative v2.0.0 — Combat reimagined through recovery time and phase-driven mechanics.
+Lisa's Angry Initiative v2.0.1 — Combat reimagined through recovery time and phase-driven mechanics.
