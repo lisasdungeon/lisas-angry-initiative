@@ -7,7 +7,7 @@
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";
-import { getActorWeaponDamageDie } from "./dice-utils.js";
+import { getActorWeaponDamageDie, getInitiativeDieBySize } from "./dice-utils.js";
 import { getFlag } from "./flag-manager.js";
 import { format, localize } from "./i18n.js";
 
@@ -132,7 +132,7 @@ export function onRenderCombatTracker(moduleApi, tracker, html) {
 
             const lastAction = getFlag(combatant, FLAGS.LAST_ACTION) || "attack";
             const options = {
-                initiativeDie: getFlag(combatant, FLAGS.INITIATIVE_DIE) || moduleApi.getInitiativeDieBySize(combatant.actor)
+                initiativeDie: getFlag(combatant, FLAGS.INITIATIVE_DIE) || getInitiativeDieBySize(combatant.actor)
             };
 
             if (lastAction === "attack") {
