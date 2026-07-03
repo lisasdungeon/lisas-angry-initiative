@@ -1,7 +1,7 @@
 {
   "name": "lisas-angry-initiative",
   "version": "2.0.0",
-  "description": "Premium Patreon-gated Recovery Time Initiative v2 for Foundry VTT and D&D5e with advanced modifiers, phase variants, and integration hooks.",
+  "description": "Recovery Time Initiative v2 for Foundry VTT and D&D5e with advanced modifiers, phase variants, custom recovery tables, and integration hooks.",
   "type": "module",
   "main": "scripts/lisas-angry-initiative.js",
   "scripts": {
@@ -13,14 +13,16 @@
     "foundry-vtt",
     "dnd5e",
     "module",
-    "premium",
     "initiative",
     "combat"
   ],
   "author": "Lisa's Dungeon",
-  "license": "Proprietary",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/LisasDungeon/lisas-angry-initiative"
+  },
+  "dependencies": {
+    "archiver": "^8.0.0"
   }
 }

@@ -1,16 +1,15 @@
 # Lisa's Angry Initiative v2.0.0
 
-Premium Patreon-gated Recovery Time Initiative v2 for Foundry VTT and D&D5e.
+Recovery Time Initiative v2 for Foundry VTT and D&D5e — Now free and open-source!
 
 Based on [The Angry GM's Recovery Time Initiative](https://theangrygm.com/fixing-initiative-because-i-want-to-part-ii-angrys-recovery-time-initiative-system/), this v2.0 module expands combat into a phase-driven loop with advanced modifiers, phase variants, custom recovery tables, and deep integration hooks.
 
-## Premium access
+## Features
 
-`Lisa's Angry Initiative` is a premium module distributed through Patreon.
+Free and open-source module for Foundry VTT.
 
-- **Patreon:** [Lisa's Dungeon Patreon](https://patreon.com/LisasDungeon?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink)
-- **Repository:** Premium source repository
-- **Distribution:** Patreon-gated exclusive
+- **GitHub:** [Lisa's Dungeon on GitHub](https://github.com/LisasDungeon/lisas-angry-initiative)
+- **License:** MIT
 
 ## Features (v2.0.0)
 
