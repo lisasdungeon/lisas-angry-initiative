@@ -43,6 +43,7 @@
       "CheckedAttack": "Checked Attack (smaller recovery die)",
       "BonusAction": "Bonus Action Used (larger recovery die)",
       "UpcastSpell": "Upcast Spell (larger recovery die)",
+      "ApplyConditions": "Apply Condition Modifiers",
       "RecoveryTitle": "Recovery Roll: {name}",
       "RollRecovery": "Roll Recovery",
       "RecoveryDie": "Recovery Die:",
