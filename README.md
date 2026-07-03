@@ -166,8 +166,8 @@ For release access, support updates, and premium distribution:
 
 For direct inquiries:
 
-- **Email:** [Asgardinnovations@protonmail.com](mailto:Asgardinnovations@protonmail.com)
-- **Discord:** Odinn1982
+- **Email:** [lisasdungeon@gmail.com](mailto:lisasdungeon@gmail.com)
+- **Discord:** MystryssLysa
 
 ## License
 

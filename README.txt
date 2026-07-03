@@ -192,8 +192,8 @@ For release access, support updates, and premium distribution:
 Patreon: https://patreon.com/LisasDungeon
 
 For direct inquiries:
-Email: Asgardinnovations@protonmail.com
-Discord: Odinn1982
+Email: lisasdungeon@gmail.com
+Discord: MystryssLysa
 
 ================================================================================
 LICENSE
