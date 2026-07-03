@@ -1,0 +1,68 @@
+{
+  "LISAS_ANGRY_INIT": {
+    "Settings": {
+      "EnableCore": {
+        "Name": "Enable Lisa's Angry Initiative",
+        "Hint": "Enable Lisa's Angry Initiative for active combats in this world."
+      },
+      "AutoSizeInitDie": {
+        "Name": "Auto-Size Initiative Die",
+        "Hint": "Assign initiative dice from creature size: Tiny/Small d4, Medium d6, Large d8, Huge+ d10."
+      },
+      "BlockReactionsWhileRecovering": {
+        "Name": "Block Reactions While Recovering",
+        "Hint": "Prevent recovering combatants from using reactions before their next phase arrives."
+      },
+      "KnockbackThreshold": {
+        "Name": "Knockback Threshold",
+        "Hint": "Reserved for heavier-hit knockback handling. Leave at 0 to use the default phase shift rule."
+      },
+      "ShowPhaseVisuals": {
+        "Name": "Show Phase Visuals",
+        "Hint": "Show current phase and next phase details in the combat tracker and attack chat cards."
+      }
+    },
+    "Combat": {
+      "InitiativeRollFlavor": "Initiative Roll: Phase {phase}",
+      "RecoveryRollFlavor": "Recovery Roll: Phase {phase}",
+      "TrackerPhase": "Phase {phase}",
+      "TrackerPhaseRecovering": "Phase {phase} (Next: {nextPhase})"
+    },
+    "Actions": {
+      "Attack": "Attack",
+      "Cantrip": "Cantrip",
+      "Spell": "Spell",
+      "Dash": "Dash",
+      "Disengage": "Disengage",
+      "Dodge": "Dodge",
+      "Hide": "Hide",
+      "Ready": "Ready",
+      "Other": "Other"
+    },
+    "Dialogs": {
+      "ActionType": "Action Type",
+      "CheckedAttack": "Checked Attack (smaller recovery die)",
+      "BonusAction": "Bonus Action Used (larger recovery die)",
+      "UpcastSpell": "Upcast Spell (larger recovery die)",
+      "RecoveryTitle": "Recovery Roll: {name}",
+      "RollRecovery": "Roll Recovery",
+      "RecoveryDie": "Recovery Die:",
+      "CleanupTitle": "Clean Up Module Data?",
+      "CleanupPrompt": "Would you like to remove Lisa's Angry Initiative combat flags from the active encounter?"
+    },
+    "Notifications": {
+      "ReactionBlocked": "You are recovering until Phase {phase} and cannot use reactions.",
+      "ModuleActive": "{title} is active. Configure it from the world settings.",
+      "SettingsReset": "{title} settings have been reset to their default values.",
+      "CleanupComplete": "{title} combat data cleanup is complete."
+    },
+    "Chat": {
+      "ReadiedAction": "{name} readied an action and will act on Phase {phase}.",
+      "KnockbackApplied": "<strong>Knockback!</strong> {name} was hit by {attackDie} against {initiativeDie} and shifts to Phase {phase}.",
+      "DelayedCombatant": "<strong>Delayed!</strong> {name} was pushed out of the current round order and will re-enter on the next round."
+    },
+    "Logs": {
+      "PhaseApplied": "Lisa's Angry Initiative | Applied Phase {phase} to {name} (Roll: {total}, Bonus: {bonus})"
+    }
+  }
+}
