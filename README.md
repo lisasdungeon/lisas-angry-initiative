@@ -60,6 +60,12 @@ Free and open-source module for Foundry VTT.
 
 Custom module developers can hook into any stage of combat flow.
 
+## Screenshots
+
+![Combat Tracker Integration](Lisa's%20Angry%201.jpeg)
+![Recovery Roll Dialog](Lisa's%20Angry%202.jpeg)
+![Phase Display](Lisa's%20Angry%203.jpeg)
+
 ## Current compatibility
 
 - **Foundry VTT:** v13+ (verified v14)
