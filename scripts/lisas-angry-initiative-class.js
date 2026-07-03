@@ -51,7 +51,6 @@ export default class LisasAngryInitiative {
             getInitiativeDieBySize,
             upsizeDie,
             downsizeDie,
-            applyAdvancedModifiers: this.applyAdvancedModifiers.bind(this),
             getFlag: this.getFlag.bind(this),
             setFlag: this.setFlag.bind(this),
             setPhase: this.setPhase.bind(this),
