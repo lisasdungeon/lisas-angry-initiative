@@ -1,5 +1,5 @@
 ================================================================================
-LISA'S ANGRY INITIATIVE v2.0.1
+LISA'S ANGRY INITIATIVE v2.0.2
 ================================================================================
 
 Recovery Time Initiative v2 for Foundry VTT and D&D5e — Now free and open-source!
@@ -81,9 +81,9 @@ SCREENSHOTS
 ================================================================================
 
 See included JPEG images:
-- Lisa's Angry 1.jpeg — Combat Tracker Integration
-- Lisa's Angry 2.jpeg — Recovery Roll Dialog
-- Lisa's Angry 3.jpeg — Phase Display
+- screenshots/1.jpeg — Combat Tracker Integration
+- screenshots/2.jpeg — Recovery Roll Dialog
+- screenshots/3.jpeg — Phase Display
 
 ================================================================================
 COMPATIBILITY
@@ -179,10 +179,8 @@ DOCUMENTATION
 ================================================================================
 
 See the docs/ folder for complete documentation:
-- docs/API.md — Full API reference with examples
+- docs/API.md — Full API reference with examples, including phase variants and custom recovery tables
 - docs/gm-guide.md — GM workflow and rulings
-- docs/phase-variants.md — Variant rules and customization
-- docs/recovery-tables.md — Custom table creation guide
 
 ================================================================================
 SUPPORT
@@ -207,4 +205,4 @@ for any purpose, provided the copyright notice and license text are included.
 
 ================================================================================
 
-Lisa's Angry Initiative v2.0.1 — Combat reimagined through recovery time and phase-driven mechanics.
+Lisa's Angry Initiative v2.0.2 — Combat reimagined through recovery time and phase-driven mechanics.

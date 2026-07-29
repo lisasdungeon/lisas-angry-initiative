@@ -2,10 +2,18 @@
  * Lisa's Angry Initiative - Dice Utilities
  * @module dice-utils
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 import { RECOVERY_DICE, SIZE_TO_DIE, ACTION_TYPES } from './constants.js';
+
+// ACTION_TYPES uses camelCase keys (bonusAction, spellUpcast) but every caller
+// normalizes actionType to lowercase before lookup (the recovery dialog's own
+// option values include "bonusAction"), so a case-sensitive lookup here would
+// never match — build a lowercase-keyed index once instead.
+const ACTION_TYPES_BY_LOWER_KEY = Object.fromEntries(
+    Object.entries(ACTION_TYPES).map(([key, value]) => [key.toLowerCase(), value])
+);
 
 export function getInitiativeDieBySize(actor) {
     const size = actor?.system?.traits?.size || 'medium';
@@ -55,7 +63,7 @@ export function getActorWeaponDamageDie(actor) {
 
 export function getRecoveryDie(actionType, options = {}) {
     const type = (actionType || '').toLowerCase();
-    const action = ACTION_TYPES[type];
+    const action = ACTION_TYPES_BY_LOWER_KEY[type];
 
     if (!action) return { die: 'd6', fixedPhase: null };
 

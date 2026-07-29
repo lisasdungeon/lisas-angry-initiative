@@ -1,9 +1,8 @@
 /**
  * Lisa's Angry Initiative - Combat Handlers
- * Copyright © 2025-2026 The Curator
  * @module combat-handlers
- * @author The Curator
- * @license Lisa's Dungeon Proprietary
+ * @author Lisa's Dungeon
+ * @license MIT
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";
@@ -136,19 +135,21 @@ export async function onCombatUpdate(moduleApi, combat, updateData, _options, us
     const lastAction = getFlag(previousCombatant, FLAGS.LAST_ACTION) || "attack";
     const recoveryOptions = getRecoveryOptions(previousCombatant, lastAction, roundChanged);
     const isGamemaster = game.user.isGM;
-    const isOwner = previousCombatant.isOwner;
-    const hasPlayerOwner = previousCombatant.hasPlayerOwner;
-    let shouldPrompt = false;
 
-    if (!isGamemaster && isOwner) {
-        shouldPrompt = true;
+    // Every owning player's client independently evaluates this hook, so picking
+    // "am I an owner" per-client would let two owners both pass the check before
+    // either PROMPT_LOCK write lands (setFlag/getFlag are async document ops).
+    // Sort active non-GM owners deterministically so exactly one client proceeds;
+    // fall back to the GM who ended the turn only when no player owner is online.
+    const activeOwners = game.users
+        .filter((user) => user.active && !user.isGM && previousCombatant.testUserPermission(user, "OWNER"))
+        .sort((a, b) => a.id.localeCompare(b.id));
+
+    let shouldPrompt = false;
+    if (activeOwners.length > 0) {
+        shouldPrompt = game.user.id === activeOwners[0].id;
     } else if (isGamemaster) {
-        if (!hasPlayerOwner) {
-            shouldPrompt = game.user.id === userId;
-        } else {
-            const activeOwners = game.users.filter((user) => user.active && !user.isGM && previousCombatant.testUserPermission(user, "OWNER"));
-            shouldPrompt = activeOwners.length === 0;
-        }
+        shouldPrompt = game.user.id === userId;
     }
 
     if (!shouldPrompt || getFlag(previousCombatant, FLAGS.PROMPT_LOCK)) {
@@ -200,6 +201,7 @@ export async function onRollDamage(_moduleApi, item) {
             : "d6";
 
     const attackerDieSize = parseInt(baseDie.replace("d", ""), 10) || 6;
+    const knockbackThreshold = Number(game.settings.get("lisas-angry-initiative", SETTINGS.KNOCKBACK_THRESHOLD)) || 0;
 
     for (const targetToken of game.user.targets) {
         const combatant = game.combat.combatants.find((entry) => entry.token?.id === targetToken.id);
@@ -211,7 +213,7 @@ export async function onRollDamage(_moduleApi, item) {
 
         const initiativeDie = getFlag(combatant, FLAGS.INITIATIVE_DIE) || "d6";
         const initiativeDieSize = parseInt(initiativeDie.replace("d", ""), 10) || 6;
-        if (attackerDieSize <= initiativeDieSize) continue;
+        if (attackerDieSize <= initiativeDieSize + knockbackThreshold) continue;
 
         const currentPhase = getFlag(combatant, FLAGS.CURRENT_PHASE) || 1;
         const nextPhase = currentPhase + 1;
@@ -266,10 +268,6 @@ export async function onUseItem(_moduleApi, item) {
     if (combatant) {
         await setFlag(combatant, FLAGS.LAST_ACTION, getActionTypeFromItem(item));
     }
-}
-
-export async function onPreUpdateToken() {
-    return undefined;
 }
 
 export function onPreRollInitiative(moduleApi, actor, rollData) {

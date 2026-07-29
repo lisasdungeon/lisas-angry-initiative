@@ -1,4 +1,4 @@
-# Lisa's Angry Initiative v2.0.0 — API Reference
+# Lisa's Angry Initiative v2.0.2 — API Reference
 
 Complete API documentation for module integration and scripting.
 
@@ -519,4 +519,4 @@ if (game.combat?.current?.combatantId) {
 
 ---
 
-**Lisa's Angry Initiative v2.0.0** — Build your own combat extensions with powerful integration hooks.
+**Lisa's Angry Initiative v2.0.2** — Build your own combat extensions with powerful integration hooks.

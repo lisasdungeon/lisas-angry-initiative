@@ -10,9 +10,7 @@ export const MODULE_ID = 'lisas-angry-initiative';
 export const MODULE_INFO = {
   id: MODULE_ID,
   title: 'Lisa\'s Angry Initiative',
-  version: '2.0.1',
-  icon: 'fas fa-dice-d20',
-  order: 50,
+  version: '2.0.2',
 };
 
 export const PHASES = {
@@ -99,9 +97,7 @@ export const SETTINGS = {
   AUTO_SIZE_INIT_DIE: 'autoSizeInitDie',
   BLOCK_REACTIONS: 'blockReactionsWhileRecovering',
   KNOCKBACK_THRESHOLD: 'knockbackThreshold',
-  SHOW_PHASE_VISUALS: 'showPhaseVisuals',
-  PHASE_VARIANT: 'phaseVariant',
-  RECOVERY_TABLE: 'recoveryTable'
+  SHOW_PHASE_VISUALS: 'showPhaseVisuals'
 };
 
 /** Maximum recovery-history entries retained per combatant. */

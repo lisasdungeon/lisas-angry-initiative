@@ -12,16 +12,10 @@ export class PhaseIndicatorsSystem {
     this.tokenIndicators = new Map();
   }
 
-  /**
-   * Get phase indicator for token
-   */
   getTokenIndicator(tokenId) {
     return this.tokenIndicators.get(tokenId) || null;
   }
 
-  /**
-   * Set phase indicator for token
-   */
   setTokenIndicator(tokenId, phase) {
     if (!PHASES[phase]) return false;
 
@@ -36,17 +30,11 @@ export class PhaseIndicatorsSystem {
     return true;
   }
 
-  /**
-   * Remove indicator for token
-   */
   removeTokenIndicator(tokenId) {
     this.tokenIndicators.delete(tokenId);
     this._clearTokenVisuals(tokenId);
   }
 
-  /**
-   * Get all token indicators
-   */
   getAllIndicators() {
     const all = {};
     for (const [tokenId, indicator] of this.tokenIndicators) {
@@ -55,9 +43,6 @@ export class PhaseIndicatorsSystem {
     return all;
   }
 
-  /**
-   * Apply visual indicators to token
-   */
   _updateTokenVisuals(tokenId, phase) {
     const token = canvas?.tokens?.get?.(tokenId);
     if (!token?.document) return;
@@ -65,22 +50,16 @@ export class PhaseIndicatorsSystem {
     const phaseData = PHASES[phase];
     if (!phaseData) return;
 
-    token.document.setFlag('lisas-angry-initiative', 'phase', phase);
+    token.document.setFlag(MODULE_ID, 'phase', phase);
   }
 
-  /**
-   * Clear visual indicators from token
-   */
   _clearTokenVisuals(tokenId) {
     const token = canvas?.tokens?.get?.(tokenId);
     if (!token?.document) return;
 
-    token.document.unsetFlag('lisas-angry-initiative', 'phase');
+    token.document.unsetFlag(MODULE_ID, 'phase');
   }
 
-  /**
-   * Create phase display UI
-   */
   createPhaseDisplayUI() {
     return `
       <div id="ld-angry-init-combat-tracker">

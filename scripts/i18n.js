@@ -2,7 +2,7 @@
  * Lisa's Angry Initiative - Localization Helpers
  * @module i18n
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 const ROOT_KEY = "LISAS_ANGRY_INIT";

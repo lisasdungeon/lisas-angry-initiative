@@ -2,7 +2,7 @@
  * Lisa's Angry Initiative - Custom Recovery Tables
  * @module custom-recovery-tables
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 export class CustomRecoveryTablesSystem {
@@ -11,25 +11,19 @@ export class CustomRecoveryTablesSystem {
     this._initializeDefaultTables();
   }
 
-  /**
-   * Create custom recovery table
-   */
   createTable(tableId, config) {
     const table = {
       id: tableId,
       name: config.name || 'Custom Recovery Table',
       description: config.description || '',
       rules: config.rules || {}, // { actionType: { die: 'd6', bonusAction: '+1', checked: '-1' } }
-      isDefault: false,
+      isDefault: !!config.isDefault,
     };
 
     this.tables.set(tableId, table);
     return table;
   }
 
-  /**
-   * Get recovery die for action type from custom table
-   */
   getRecoveryDieFromTable(tableId, actionType) {
     const table = this.tables.get(tableId);
     if (!table) return null;
@@ -38,9 +32,6 @@ export class CustomRecoveryTablesSystem {
     return rule?.die || null;
   }
 
-  /**
-   * Get all tables
-   */
   getAllTables() {
     const all = {};
     for (const [id, table] of this.tables) {
@@ -49,16 +40,10 @@ export class CustomRecoveryTablesSystem {
     return all;
   }
 
-  /**
-   * Delete custom table
-   */
   deleteTable(tableId) {
     return this.tables.delete(tableId);
   }
 
-  /**
-   * Update table rules
-   */
   updateTableRules(tableId, rules) {
     const table = this.tables.get(tableId);
     if (!table) return false;
@@ -76,6 +61,7 @@ export class CustomRecoveryTablesSystem {
         bonusAction: { die: '+1' },
         checked: { die: '-1' },
       },
+      isDefault: true,
     });
 
     this.createTable('spellcaster', {
@@ -87,6 +73,7 @@ export class CustomRecoveryTablesSystem {
         spellUpcast: { die: 'd10' },
         bonusAction: { die: '+1' },
       },
+      isDefault: true,
     });
 
     this.createTable('archer', {
@@ -97,6 +84,7 @@ export class CustomRecoveryTablesSystem {
         bonusAction: { die: '+1' },
         movement: { die: 'size' },
       },
+      isDefault: true,
     });
   }
 

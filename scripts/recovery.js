@@ -2,13 +2,14 @@
  * Lisa's Angry Initiative - Recovery Flow
  * @module recovery
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";
 import { getFlag, setFlag } from "./flag-manager.js";
 import { getActorWeaponDamageDie, getRecoveryDie } from "./dice-utils.js";
 import { format, getRecoveryActionOptions, localize } from "./i18n.js";
+import { recoveryHistorySystem } from "./recovery-history.js";
 
 function buildRecoveryDialogContent(lastAction, options) {
     return `
@@ -57,7 +58,7 @@ export async function promptRecoveryRoll(moduleApi, combatant, lastAction, optio
         ...options,
         isCheckedAttack: !!result.isCheckedAttack,
         hasBonusAction: !!result.hasBonusAction,
-        applyConditions: !!result.applyConditions && game.settings.get('lisas-angry-initiative', SETTINGS.BLOCK_REACTIONS),
+        applyConditions: !!result.applyConditions,
         baseDamageDie: options.baseDamageDie || getActorWeaponDamageDie(combatant.actor)
     };
 
@@ -78,9 +79,19 @@ export async function rollRecovery(moduleApi, combatant, actionType, options = {
 
     const recoveryInfo = getRecoveryDie(normalizedAction, recoveryOptions);
     let result = recoveryInfo.fixedPhase;
+    let rolledDie = null;
 
     if (result === null) {
         let die = recoveryInfo.die;
+
+        // getRecoveryDie() already applied the bonus-action/checked-attack size
+        // steps (it reads the same isCheckedAttack/hasBonusAction options), so
+        // only the condition-based adjustments are asked for here to avoid
+        // double-applying bonus/checked against the same die.
+        if (recoveryOptions.applyConditions && typeof moduleApi.applyAdvancedModifiers === "function") {
+            die = moduleApi.applyAdvancedModifiers(die, combatant, { applyConditions: true });
+        }
+        rolledDie = die;
 
         const roll = await new Roll(`1${die}`).evaluate();
         result = Math.min(roll.total, 10);
@@ -103,6 +114,16 @@ export async function rollRecovery(moduleApi, combatant, actionType, options = {
         await setFlag(combatant, FLAGS.RECOVERING, false);
         await combatant.update({ initiative: (11 - result) * 10 });
     }
+
+    recoveryHistorySystem.record({
+        combatantId: combatant.id,
+        combatantName: combatant.name,
+        actionType: normalizedAction,
+        die: rolledDie,
+        rollResult: result,
+        nextPhase: result,
+        conditions: Array.from(combatant.actor?.statuses ?? [])
+    });
 
     return result;
 }

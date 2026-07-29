@@ -52,7 +52,6 @@
     },
     "Notifications": {
       "ReactionBlocked": "You are recovering until Phase {phase} and cannot use reactions.",
-      "ModuleActive": "{title} is active. Configure it from the world settings.",
       "SettingsReset": "{title} settings have been reset to their default values.",
       "CleanupComplete": "{title} combat data cleanup is complete."
     },

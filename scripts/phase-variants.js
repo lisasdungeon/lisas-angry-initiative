@@ -2,7 +2,7 @@
  * Lisa's Angry Initiative - Phase Variants System
  * @module phase-variants
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 import { PHASE_VARIANTS } from './constants.js';
@@ -13,16 +13,10 @@ export class PhaseVariantsSystem {
     this.customVariants = new Map();
   }
 
-  /**
-   * Get active phase variant
-   */
   getActiveVariant() {
     return this.customVariants.get(this.activeVariant) || PHASE_VARIANTS[this.activeVariant];
   }
 
-  /**
-   * Set active phase variant
-   */
   setActiveVariant(variantId) {
     if (PHASE_VARIANTS[variantId] || this.customVariants.has(variantId)) {
       this.activeVariant = variantId;
@@ -31,9 +25,6 @@ export class PhaseVariantsSystem {
     return false;
   }
 
-  /**
-   * Get all available variants (built-in + custom)
-   */
   getAllVariants() {
     const all = { ...PHASE_VARIANTS };
     for (const [id, variant] of this.customVariants) {
@@ -42,9 +33,6 @@ export class PhaseVariantsSystem {
     return all;
   }
 
-  /**
-   * Create custom variant
-   */
   createCustomVariant(variantId, config) {
     const variant = {
       id: variantId,
@@ -60,9 +48,6 @@ export class PhaseVariantsSystem {
     return variant;
   }
 
-  /**
-   * Delete custom variant
-   */
   deleteCustomVariant(variantId) {
     if (PHASE_VARIANTS[variantId]) return false;
     if (this.activeVariant === variantId) {
@@ -71,24 +56,15 @@ export class PhaseVariantsSystem {
     return this.customVariants.delete(variantId);
   }
 
-  /**
-   * Get phase count for active variant
-   */
   getPhaseCount() {
     return this.getActiveVariant().phases;
   }
 
-  /**
-   * Constrain phase to variant bounds
-   */
   constrainPhase(phase) {
     const variant = this.getActiveVariant();
     return Math.max(1, Math.min(variant.phases, phase));
   }
 
-  /**
-   * Constrain recovery die roll to variant bounds
-   */
   constrainRecovery(rollResult) {
     const variant = this.getActiveVariant();
     return Math.max(variant.minRecovery, Math.min(variant.maxRecovery, rollResult));

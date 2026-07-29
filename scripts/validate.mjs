@@ -2,7 +2,7 @@
  * Lisa's Angry Initiative - Validation Script
  * @module validate
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
 import fs from 'fs';

@@ -2,10 +2,10 @@
  * Lisa's Angry Initiative - Build Release Script
  * @module build-release
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
-import { execSync } from 'child_process';
+import { execFileSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,7 +13,9 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.join(__dirname, '..');
 
-async function buildRelease() {
+const EXCLUDED = new Set(['.git', 'node_modules', 'zips']);
+
+function buildRelease() {
   const packageJson = JSON.parse(fs.readFileSync(path.join(projectRoot, 'package.json'), 'utf8'));
   const version = packageJson.version;
   const moduleName = packageJson.name;
@@ -24,12 +26,14 @@ async function buildRelease() {
   }
 
   const zipPath = path.join(zipsDir, `${moduleName}-v${version}.zip`);
+  if (fs.existsSync(zipPath)) {
+    fs.unlinkSync(zipPath);
+  }
+
+  const entries = fs.readdirSync(projectRoot).filter((entry) => !EXCLUDED.has(entry));
 
   try {
-    const cmd = `powershell -NoProfile -Command "\\$items = @(); Get-ChildItem -Path '${projectRoot}' -Recurse -File | Where-Object { \\$_.FullName -notmatch '(node_modules|\\\\.git|zips)' } | ForEach-Object { \\$items += \\$_.FullName }; Compress-Archive -Path \\$items -DestinationPath '${zipPath}' -Force"`;
-
-    execSync(cmd, { stdio: 'inherit' });
-
+    execFileSync('zip', ['-r', '-X', zipPath, ...entries], { cwd: projectRoot, stdio: 'inherit' });
     console.log(`Built ${zipPath}`);
   } catch (error) {
     console.error('Build failed:', error.message);

@@ -1,9 +1,8 @@
 /**
  * Lisa's Angry Initiative - UI Handlers
- * Copyright © 2025-2026 The Curator
  * @module ui-handlers
- * @author The Curator
- * @license Lisa's Dungeon Proprietary
+ * @author Lisa's Dungeon
+ * @license MIT
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";

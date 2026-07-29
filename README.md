@@ -1,4 +1,4 @@
-# Lisa's Angry Initiative v2.0.1
+# Lisa's Angry Initiative v2.0.2
 
 Recovery Time Initiative v2 for Foundry VTT and D&D5e — Now free and open-source!
 
@@ -11,7 +11,7 @@ Free and open-source module for Foundry VTT.
 - **GitHub:** [Lisa's Dungeon on GitHub](https://github.com/LisasDungeon/lisas-angry-initiative)
 - **License:** MIT
 
-## Features (v2.0.1)
+## Features (v2.0.2)
 
 ### Core System
 - Phase-based combat from Phase 1 through Phase 10 (or variant count)
@@ -153,10 +153,8 @@ getStatistics()
 
 ## Documentation
 
-- `docs/API.md` — Full API reference with examples
+- `docs/API.md` — Full API reference with examples, including phase variants and custom recovery tables
 - `docs/gm-guide.md` — GM workflow and rulings
-- `docs/phase-variants.md` — Variant rules and customization
-- `docs/recovery-tables.md` — Custom table creation guide
 
 ## Support
 
@@ -175,4 +173,4 @@ This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for det
 
 ---
 
-**Lisa's Angry Initiative v2.0.1** — Combat reimagined through recovery time and phase-driven mechanics.
+**Lisa's Angry Initiative v2.0.2** — Combat reimagined through recovery time and phase-driven mechanics.

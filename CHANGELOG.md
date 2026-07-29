@@ -2,28 +2,36 @@
 
 All notable changes to Lisa's Angry Initiative are documented in this file.
 
+## [2.0.2] - 2026-07-29
+
+### Fixed
+
+- Condition-based die adjustments (stunned, paralyzed, exhaustion, inspired, blessed, haste) now actually apply to recovery rolls when "Apply Condition Modifiers" is checked; previously the adjustment logic existed but was never called.
+- Attack, damage, item-use, and initiative hooks are now registered, so recovery-state reaction blocking, weapon knockback, and auto-sized initiative dice run during real combat instead of sitting unreachable.
+- Phase variants, custom recovery tables, integration hooks, and phase indicators are now reachable through the public API exactly as documented, instead of being built but never wired in.
+- The "Apply Condition Modifiers" checkbox no longer depends on the unrelated "Block Reactions" setting.
+- Fixed a race where multiple owning players' clients could each open a duplicate recovery-roll dialog for the same combatant at end of turn.
+- The knockback threshold setting is now actually used when deciding whether an attack shifts a target's phase.
+- Recovery rolls are now recorded to per-combatant history, and `getHistory`/`clearHistory`/`clearAllHistory`/`getVersion`/`getStatistics` are implemented on the public API.
+
+### Changed
+
+- Standardized license/author headers across all source files to MIT / Lisa's Dungeon.
+- Removed unused settings, dead code paths, and orphaned files that were never reachable at runtime.
+- Removed the `globalThis.LD_MODULES` cross-module registry entry and the `activate()` method that existed only to serve it. This module is standalone and does not register into or depend on any shared launcher.
+
 ## [2.0.0] - 2026-07-03
 
 ### Added
 
-- Complete v2.0 rebrand of Lisa's Angry Initiativeiative as Lisa's Angry Initiative
 - Advanced modifier system with condition-based die adjustments (stunned, paralyzed, exhaustion, inspired, blessed, haste)
 - Phase variants system: Standard (1-10), Gritty (1-12), Heroic (1-8), and unlimited custom variants
 - Custom recovery tables: create and manage per-table recovery rules (Standard Melee, Spellcaster, Archer presets)
 - Recovery history tracking: per-combatant logs with timestamps, action types, conditions, and modifiers
 - Phase indicators: visual phase badges on tokens with color-coded display and combat tracker integration
 - Integration hooks API: 8 predefined hooks for deep module integration (beforePhaseChange, afterPhaseChange, beforeRecoveryRoll, afterRecoveryRoll, beforeCombatStart, afterCombatEnd, onConditionApplied, onConditionRemoved)
-- Comprehensive public API with 40+ methods across recovery, variants, tables, hooks, and indicators
+- Comprehensive public API across recovery, variants, tables, hooks, and indicators
 - Modular architecture: 6 independent systems (recovery, phase-variants, custom-recovery-tables, integration-hooks, phase-indicators, main class)
-
-### Changed
-
-- Module ID: `lisas-angry-initiative` → `lisas-angry-initiative`
-- Module title: `Lisa's Angry Initiative` → `Lisa's Angry Initiative`
-- Version: `1.2.2` → `2.0.0`
-- Author: `The Curator` → `Lisa's Dungeon`
-- Patreon: Lisa's Dungeon Patreon → Lisa's Dungeon Patreon
-- Repository: LisasDungeon → LisasDungeon
 
 ### Fixed
 
@@ -31,10 +39,6 @@ All notable changes to Lisa's Angry Initiative are documented in this file.
 - Recovery die formula extraction from weapons
 - Condition modifier stacking calculations
 
-## Version History (Legacy)
-
-See [Lisa's Angry Initiative CHANGELOG](https://github.com/LisasDungeon/lisas-angry-initiative/blob/master/CHANGELOG.md) for v1.0-v1.2.2 history.
-
 ---
 
-**Lisa's Angry Initiative v2.0.0** — Foundry VTT combat reimagined through recovery time and phase-driven mechanics.
+**Lisa's Angry Initiative v2.0.2** — Foundry VTT combat reimagined through recovery time and phase-driven mechanics.

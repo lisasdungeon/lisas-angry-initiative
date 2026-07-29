@@ -1,4 +1,4 @@
-# Lisa's Angry Initiative v2.0.0 — GM Guide
+# Lisa's Angry Initiative v2.0.2 — GM Guide
 
 Complete guide to running Recovery Time Initiative combat at your table.
 
@@ -318,4 +318,4 @@ A: Roll the initiative die **now**. When your trigger happens, you act and use t
 
 ---
 
-**Lisa's Angry Initiative v2.0.0** — Combat that rewards tactical thinking and action timing.
+**Lisa's Angry Initiative v2.0.2** — Combat that rewards tactical thinking and action timing.
