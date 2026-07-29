@@ -5,8 +5,9 @@
   "type": "module",
   "main": "scripts/lisas-angry-initiative.js",
   "scripts": {
-    "test": "node scripts/validate.mjs",
-    "build": "node scripts/build-release.mjs"
+    "test": "node --test tests/",
+    "build": "node scripts/build-release.mjs",
+    "test:coverage": "node --test --experimental-test-coverage tests/"
   },
   "keywords": [
     "foundry",

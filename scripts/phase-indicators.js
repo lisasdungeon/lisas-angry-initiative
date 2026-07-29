@@ -2,10 +2,10 @@
  * Lisa's Angry Initiative - Phase Indicators
  * @module phase-indicators
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
-import { PHASES } from './constants.js';
+import { MODULE_ID, PHASES } from './constants.js';
 
 export class PhaseIndicatorsSystem {
   constructor() {
@@ -59,40 +59,23 @@ export class PhaseIndicatorsSystem {
    * Apply visual indicators to token
    */
   _updateTokenVisuals(tokenId, phase) {
-    const token = canvas.tokens?.get(tokenId);
-    if (!token) return;
+    const token = canvas?.tokens?.get?.(tokenId);
+    if (!token?.document) return;
 
     const phaseData = PHASES[phase];
     if (!phaseData) return;
 
-    const indicator = document.createElement('div');
-    indicator.className = 'ld-angry-init-phase-badge';
-    indicator.style.cssText = `
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      background: ${phaseData.color};
-      color: white;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
-      font-weight: bold;
-      z-index: 1000;
-    `;
-    indicator.textContent = `P${phase}`;
-
-    token.mesh?.addChild(indicator);
+    token.document.setFlag('lisas-angry-initiative', 'phase', phase);
   }
 
   /**
    * Clear visual indicators from token
    */
   _clearTokenVisuals(tokenId) {
-    const token = canvas.tokens?.get(tokenId);
-    if (!token) return;
+    const token = canvas?.tokens?.get?.(tokenId);
+    if (!token?.document) return;
 
-    const badge = token.mesh?.querySelector?.('.ld-angry-init-phase-badge');
-    if (badge) badge.remove();
+    token.document.unsetFlag('lisas-angry-initiative', 'phase');
   }
 
   /**

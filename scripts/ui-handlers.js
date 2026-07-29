@@ -1,15 +1,16 @@
 /**
- * RNK™ Angry Init - UI Handlers
+ * Lisa's Angry Initiative - UI Handlers
  * Copyright © 2025-2026 The Curator
  * @module ui-handlers
  * @author The Curator
- * @license RNK Proprietary
+ * @license Lisa's Dungeon Proprietary
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";
 import { getActorWeaponDamageDie, getInitiativeDieBySize } from "./dice-utils.js";
 import { getFlag } from "./flag-manager.js";
 import { format, localize } from "./i18n.js";
+import { escapeHtml } from "./utils/escapeHtml.js";
 
 const SETTING_FIELDS = [
     { key: SETTINGS.ENABLE_CORE, type: Boolean, default: true, name: "Settings.EnableCore.Name", hint: "Settings.EnableCore.Hint" },
@@ -62,26 +63,26 @@ export function onRenderChatMessageAttack(moduleApi, message, html) {
     if (!combatant) return;
 
     const root = getHtmlRoot(html);
-    root.find(".rnk-attack-menu").remove();
+    root.find(".ld-angry-initiative-attack-menu").remove();
 
     const menu = $(`
-        <div class="rnk-attack-menu" style="margin-top:4px;display:flex;align-items:center;gap:4px;">
-            <label style="font-size:0.85em;white-space:nowrap;">${localize("Dialogs.RecoveryDie")}</label>
-            <select class="rnk-rec-die" style="flex:1;">
+        <div class="ld-angry-initiative-attack-menu" style="margin-top:4px;display:flex;align-items:center;gap:4px;">
+            <label style="font-size:0.85em;white-space:nowrap;">${escapeHtml(localize("Dialogs.RecoveryDie"))}</label>
+            <select class="ld-angry-initiative-rec-die" style="flex:1;">
                 <option value="d4">d4</option>
                 <option value="d6" selected>d6</option>
                 <option value="d8">d8</option>
                 <option value="d10">d10</option>
                 <option value="d12">d12</option>
             </select>
-            <button class="rnk-roll-recovery" type="button" style="white-space:nowrap;">
-                <i class="fas fa-dice-d20"></i> ${localize("Dialogs.RollRecovery")}
+            <button class="ld-angry-initiative-roll-recovery" type="button" style="white-space:nowrap;">
+                <i class="fas fa-dice-d20"></i> ${escapeHtml(localize("Dialogs.RollRecovery"))}
             </button>
         </div>
     `);
 
-    menu.find(".rnk-roll-recovery").on("click", async () => {
-        const die = String(menu.find(".rnk-rec-die").val() || "d6");
+    menu.find(".ld-angry-initiative-roll-recovery").on("click", async () => {
+        const die = String(menu.find(".ld-angry-initiative-rec-die").val() || "d6");
         await moduleApi.rollRecovery(combatant, "attack", { baseDamageDie: die });
     });
 

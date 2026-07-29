@@ -6,7 +6,7 @@ All notable changes to Lisa's Angry Initiative are documented in this file.
 
 ### Added
 
-- Complete v2.0 rebrand of RNK Angry Initiative as Lisa's Angry Initiative
+- Complete v2.0 rebrand of Lisa's Angry Initiativeiative as Lisa's Angry Initiative
 - Advanced modifier system with condition-based die adjustments (stunned, paralyzed, exhaustion, inspired, blessed, haste)
 - Phase variants system: Standard (1-10), Gritty (1-12), Heroic (1-8), and unlimited custom variants
 - Custom recovery tables: create and manage per-table recovery rules (Standard Melee, Spellcaster, Archer presets)
@@ -18,12 +18,12 @@ All notable changes to Lisa's Angry Initiative are documented in this file.
 
 ### Changed
 
-- Module ID: `rnk-angry-init` → `lisas-angry-initiative`
-- Module title: `RNK Angry Init` → `Lisa's Angry Initiative`
+- Module ID: `lisas-angry-initiative` → `lisas-angry-initiative`
+- Module title: `Lisa's Angry Initiative` → `Lisa's Angry Initiative`
 - Version: `1.2.2` → `2.0.0`
 - Author: `The Curator` → `Lisa's Dungeon`
-- Patreon: RNK Patreon → Lisa's Dungeon Patreon
-- Repository: RNK-Enterprise → LisasDungeon
+- Patreon: Lisa's Dungeon Patreon → Lisa's Dungeon Patreon
+- Repository: LisasDungeon → LisasDungeon
 
 ### Fixed
 
@@ -33,7 +33,7 @@ All notable changes to Lisa's Angry Initiative are documented in this file.
 
 ## Version History (Legacy)
 
-See [RNK Angry Init CHANGELOG](https://github.com/RNK-Enterprise/rnk-angry-init/blob/master/CHANGELOG.md) for v1.0-v1.2.2 history.
+See [Lisa's Angry Initiative CHANGELOG](https://github.com/LisasDungeon/lisas-angry-initiative/blob/master/CHANGELOG.md) for v1.0-v1.2.2 history.
 
 ---
 

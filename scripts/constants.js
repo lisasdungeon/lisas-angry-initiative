@@ -2,14 +2,16 @@
  * Lisa's Angry Initiative - Constants
  * @module constants
  * @author Lisa's Dungeon
- * @license Proprietary
+ * @license MIT
  */
 
+export const MODULE_ID = 'lisas-angry-initiative';
+
 export const MODULE_INFO = {
-  id: 'lisas-angry-initiative',
+  id: MODULE_ID,
   title: 'Lisa\'s Angry Initiative',
-  version: '2.0.0',
-  icon: '⚔️',
+  version: '2.0.1',
+  icon: 'fas fa-dice-d20',
   order: 50,
 };
 
@@ -97,17 +99,13 @@ export const SETTINGS = {
   AUTO_SIZE_INIT_DIE: 'autoSizeInitDie',
   BLOCK_REACTIONS: 'blockReactionsWhileRecovering',
   KNOCKBACK_THRESHOLD: 'knockbackThreshold',
-  SHOW_PHASE_VISUALS: 'showPhaseVisuals'
+  SHOW_PHASE_VISUALS: 'showPhaseVisuals',
+  PHASE_VARIANT: 'phaseVariant',
+  RECOVERY_TABLE: 'recoveryTable'
 };
 
-export const DEFAULT_SETTINGS = {
-  enableModule: true,
-  enableAdvancedModifiers: true,
-  enableConditionTracking: true,
-  enableRecoveryHistory: true,
-  enablePhaseVariants: true,
-  enableCustomRecoveryTables: true,
-  phaseVariant: 'standard',
-  trackHistory: true,
-  historyLimit: 100,
-};
+/** Maximum recovery-history entries retained per combatant. */
+export const HISTORY_LIMIT = 100;
+
+/** Socket channel used to hand a recovery prompt to the owning player's client. */
+export const SOCKET_CHANNEL = `module.${MODULE_ID}`;

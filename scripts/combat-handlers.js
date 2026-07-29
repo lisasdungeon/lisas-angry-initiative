@@ -1,9 +1,9 @@
 /**
- * RNK™ Angry Init - Combat Handlers
+ * Lisa's Angry Initiative - Combat Handlers
  * Copyright © 2025-2026 The Curator
  * @module combat-handlers
  * @author The Curator
- * @license RNK Proprietary
+ * @license Lisa's Dungeon Proprietary
  */
 
 import { FLAGS, SETTINGS } from "./constants.js";
@@ -28,7 +28,7 @@ function getRecoveryOptions(combatant, lastAction, applyImmediately = false) {
     return options;
 }
 
-function getActionTypeFromItem(item) {
+export function getActionTypeFromItem(item) {
     if (item?.type === "spell") {
         return item.system?.level === 0 ? "cantrip" : "spell";
     }
@@ -95,7 +95,7 @@ export async function onCombatStart(moduleApi, combat) {
 }
 
 export async function onCombatEnd() {
-    console.log("RNK™ Angry Init | Combat ended");
+    console.log("Lisa's Angry Initiative | Combat ended");
 }
 
 export async function onCombatUpdate(moduleApi, combat, updateData, _options, userId) {
