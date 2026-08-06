@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Compliance pass: sole author Lisa's Dungeon with Discord MystryssLysa / email Lisasdungeon@gmail.com / Patreon LisasDungeon; enforce 500 LOC file cap; remove non-compliant branding and symbols where present.
+
+
 All notable changes to Lisa's Angry Initiative are documented in this file.
 
 ## [2.0.2] - 2026-07-29

@@ -12,7 +12,7 @@ FEATURES
 
 Free and open-source module for Foundry VTT.
 
-GitHub: https://github.com/LisasDungeon/lisas-angry-initiative
+GitHub: https://github.com/lisasdungeon/lisas-angry-initiative
 License: MIT
 
 

@@ -21,13 +21,13 @@
   "contributors": [
     {
       "name": "Lisa's Dungeon",
-      "url": "https://github.com/LisasDungeon"
+      "url": "https://github.com/lisasdungeon"
     }
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LisasDungeon/lisas-angry-initiative"
+    "url": "https://github.com/lisasdungeon/lisas-angry-initiative"
   },
   "dependencies": {
     "archiver": "^8.0.0"

@@ -8,7 +8,7 @@ Based on [The Angry GM's Recovery Time Initiative](https://theangrygm.com/fixing
 
 Free and open-source module for Foundry VTT.
 
-- **GitHub:** [Lisa's Dungeon on GitHub](https://github.com/LisasDungeon/lisas-angry-initiative)
+- **GitHub:** [Lisa's Dungeon on GitHub](https://github.com/lisasdungeon/lisas-angry-initiative)
 - **License:** MIT
 
 ## Features (v2.0.2)
