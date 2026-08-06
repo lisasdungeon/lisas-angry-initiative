@@ -3,3 +3,11 @@ zips/
 *.zip
 .env
 .DS_Store
+coverage/
+.nyc_output/
+build-staging/
+.release-staging/
+.release-temp/
+*.log
+.env.*
+!.env.example
