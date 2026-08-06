@@ -19,8 +19,12 @@ test('main entry: init hook lazy-loads the class and initializes once', async ()
   };
   globalThis.canvas = { tokens: { get: () => null } };
 
-  // Force a fresh import evaluation by cache-busting is unnecessary; main.js
-  // only registers Hooks.once at load. If already loaded, call the handler.
+  // Module esmodules entry re-exports main; import both so the thin entry is covered.
+  try {
+    await import('../scripts/lisas-angry-initiative.js');
+  } catch {
+    /* already evaluated in this process */
+  }
   try {
     await import('../scripts/main.js');
   } catch {
