@@ -84,6 +84,13 @@ test('getActorWeaponDamageDie: defaults to d6 with no actor, items, or weapon da
   assert.equal(getActorWeaponDamageDie({ items: [{ type: 'weapon', system: {} }] }), 'd6');
 });
 
+test('getActorWeaponDamageDie: non-dice damage formulas fall back to d6', () => {
+  const actor = {
+    items: [{ type: 'weapon', system: { equipped: true, damage: { parts: [['flat 5', 'bludgeoning']] } } }],
+  };
+  assert.equal(getActorWeaponDamageDie(actor), 'd6');
+});
+
 test('getRecoveryDie: attack uses the supplied weapon die', () => {
   assert.deepEqual(getRecoveryDie('attack', { baseDamageDie: 'd10' }), { die: 'd10', fixedPhase: null });
 });

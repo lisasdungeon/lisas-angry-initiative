@@ -1,15 +1,13 @@
 /**
  * Lisa's Angry Initiative - Main Entry Point
+ * Lazy-loads the core class on Foundry init (trigger-based).
  * @module main
  * @author Lisa's Dungeon
  * @license MIT
  */
 
-import LisasAngryInitiative from './lisas-angry-initiative-class.js';
-
-Hooks.once('init', () => {
-    LisasAngryInitiative.init();
+Hooks.once('init', async () => {
+  const { default: LisasAngryInitiative } = await import('./lisas-angry-initiative-class.js');
+  LisasAngryInitiative.init();
+  globalThis.LisasAngryInitiative = LisasAngryInitiative;
 });
-
-globalThis.LisasAngryInitiative = LisasAngryInitiative;
-export default LisasAngryInitiative;

@@ -1,12 +1,33 @@
 // PhaseIndicatorsSystem's setTokenIndicator/removeTokenIndicator try to sync a
-// flag onto the live canvas token (`canvas.tokens.get(tokenId)`), which only
-// exists inside a running Foundry client. Stub a minimal `canvas` global so
-// the bookkeeping half of this class (what this test suite covers) can run
-// outside Foundry; the token-flag sync itself needs a live client to verify.
-globalThis.canvas = { tokens: { get: () => null } };
+// flag onto the live canvas token (`canvas.tokens.get(tokenId)`). Stub canvas
+// so both the bookkeeping half and the token-flag write/clear paths run here.
+const tokenFlags = new Map();
+const liveTokens = new Map();
+
+function makeTokenDoc(id) {
+  return {
+    setFlag(module, key, value) {
+      tokenFlags.set(`${id}:${module}.${key}`, value);
+      return Promise.resolve(value);
+    },
+    unsetFlag(module, key) {
+      tokenFlags.delete(`${id}:${module}.${key}`);
+      return Promise.resolve();
+    }
+  };
+}
+
+globalThis.canvas = {
+  tokens: {
+    get(tokenId) {
+      return liveTokens.get(tokenId) ?? null;
+    }
+  }
+};
 
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { MODULE_ID } from '../scripts/constants.js';
 import { PhaseIndicatorsSystem } from '../scripts/phase-indicators.js';
 
 test('setTokenIndicator: stores phase data for a valid phase', () => {
@@ -57,4 +78,41 @@ test('getStatistics: counts tokens with an active indicator', () => {
   system.removeTokenIndicator('token-1');
 
   assert.equal(system.getStatistics().tokensWithIndicators, 1);
+});
+
+test('_updateTokenVisuals: writes phase flag when canvas token exists', () => {
+  liveTokens.set('live-1', { document: makeTokenDoc('live-1') });
+  const system = new PhaseIndicatorsSystem();
+  system.setTokenIndicator('live-1', 4);
+  assert.equal(tokenFlags.get(`live-1:${MODULE_ID}.phase`), 4);
+  liveTokens.delete('live-1');
+});
+
+test('_updateTokenVisuals: no-ops when token has no document', () => {
+  liveTokens.set('nodoc', {});
+  const system = new PhaseIndicatorsSystem();
+  assert.doesNotThrow(() => system.setTokenIndicator('nodoc', 3));
+  liveTokens.delete('nodoc');
+});
+
+test('_clearTokenVisuals: unsets phase flag when canvas token exists', () => {
+  liveTokens.set('live-2', { document: makeTokenDoc('live-2') });
+  const system = new PhaseIndicatorsSystem();
+  system.setTokenIndicator('live-2', 2);
+  system.removeTokenIndicator('live-2');
+  assert.equal(tokenFlags.has(`live-2:${MODULE_ID}.phase`), false);
+  liveTokens.delete('live-2');
+});
+
+test('_clearTokenVisuals: no-ops when canvas token is missing', () => {
+  const system = new PhaseIndicatorsSystem();
+  assert.doesNotThrow(() => system.removeTokenIndicator('ghost'));
+});
+
+test('createPhaseDisplayUI: returns combat tracker markup', () => {
+  const system = new PhaseIndicatorsSystem();
+  const html = system.createPhaseDisplayUI();
+  assert.match(html, /ld-angry-init-combat-tracker/);
+  assert.match(html, /ld-combatants-list/);
+  assert.match(html, /Lisa's Angry Initiative/);
 });

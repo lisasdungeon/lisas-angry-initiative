@@ -3,6 +3,9 @@
 ## Unreleased
 
 - Compliance pass: sole author Lisa's Dungeon with Discord MystryssLysa / email Lisasdungeon@gmail.com / Patreon LisasDungeon; enforce 500 LOC file cap; remove non-compliant branding and symbols where present.
+- Fixed `test:coverage` script glob so Node picks up every `tests/**/*.test.mjs` file.
+- Lazy-load the core class on Foundry `init` instead of importing it at module evaluation.
+- Expanded unit tests (Foundry mocks) to 100% source line and function coverage across all scripts.
 
 
 All notable changes to Lisa's Angry Initiative are documented in this file.
