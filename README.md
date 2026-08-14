@@ -1,6 +1,6 @@
 # Lisa's Angry Initiative v2.0.2
 
-Recovery Time Initiative v2 for Foundry VTT and D&D5e Now free and open-source!
+Recovery Time Initiative v2 for Foundry VTT and D&D5e: Now free and open-source!
 
 Based on [The Angry GM's Recovery Time Initiative](https://theangrygm.com/fixing-initiative-because-i-want-to-part-ii-angrys-recovery-time-initiative-system/), this v2.0 module expands combat into a phase-driven loop with advanced modifiers, phase variants, custom recovery tables, and deep integration hooks.
 
@@ -26,10 +26,10 @@ Free and open-source module for Foundry VTT.
 - Stacking modifier support
 
 ### Phase Variants
-- **Standard** — Phase 1-10, traditional recovery mechanics
-- **Gritty** — Phase 1-12, longer tactical positioning window
-- **Heroic** — Phase 1-8, faster action economy
-- **Custom** — Create unlimited custom variants with arbitrary phase counts
+- **Standard**: Phase 1-10, traditional recovery mechanics
+- **Gritty**: Phase 1-12, longer tactical positioning window
+- **Heroic**: Phase 1-8, faster action economy
+- **Custom**: Create unlimited custom variants with arbitrary phase counts
 
 ### Custom Recovery Tables
 - Define recovery rules per action type (attacks, spells, movement, etc.)
@@ -49,14 +49,14 @@ Free and open-source module for Foundry VTT.
 - Color-coded phase display
 
 ### Integration Hooks
-- `beforePhaseChange` — Pre-phase modification
-- `afterPhaseChange` — Post-phase triggers
-- `beforeRecoveryRoll` — Pre-roll adjustments
-- `afterRecoveryRoll` — Post-roll processing
-- `beforeCombatStart` — Combat setup
-- `afterCombatEnd` — Combat cleanup
-- `onConditionApplied` — Condition triggers
-- `onConditionRemoved` — Condition cleanup
+- `beforePhaseChange`: Pre-phase modification
+- `afterPhaseChange`: Post-phase triggers
+- `beforeRecoveryRoll`: Pre-roll adjustments
+- `afterRecoveryRoll`: Post-roll processing
+- `beforeCombatStart`: Combat setup
+- `afterCombatEnd`: Combat cleanup
+- `onConditionApplied`: Condition triggers
+- `onConditionRemoved`: Condition cleanup
 
 Custom module developers can hook into any stage of combat flow.
 
@@ -153,8 +153,8 @@ getStatistics()
 
 ## Documentation
 
-- `docs/API.md` — Full API reference with examples, including phase variants and custom recovery tables
-- `docs/gm-guide.md` — GM workflow and rulings
+- `docs/API.md`: Full API reference with examples, including phase variants and custom recovery tables
+- `docs/gm-guide.md`: GM workflow and rulings
 
 ## Support
 
@@ -173,4 +173,4 @@ This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for det
 
 ---
 
-**Lisa's Angry Initiative v2.0.2** — Combat reimagined through recovery time and phase-driven mechanics.
+**Lisa's Angry Initiative v2.0.2**: Combat reimagined through recovery time and phase-driven mechanics.

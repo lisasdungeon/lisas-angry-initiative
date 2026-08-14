@@ -1,4 +1,4 @@
-# Lisa's Angry Initiative v2.0.2 — GM Guide
+# Lisa's Angry Initiative v2.0.2: GM Guide
 
 Complete guide to running Recovery Time Initiative combat at your table.
 
@@ -9,9 +9,9 @@ Recovery Time Initiative (RTI) is a phase-based combat system that answers a key
 Instead of a static turn order, each combatant begins in a phase (1-10) based on their initiative die. When a combatant acts, they roll their recovery die to determine which phase they'll act again in the current round.
 
 This creates:
-- **Tactical depth** — Faster characters keep pace; slower characters spread out their actions
-- **Dynamic positioning** — Who acts when affects positioning and spell setup
-- **Action weight** — Every action has a recovery cost in real time
+- **Tactical depth**: Faster characters keep pace; slower characters spread out their actions
+- **Dynamic positioning**: Who acts when affects positioning and spell setup
+- **Action weight**: Every action has a recovery cost in real time
 
 ---
 
@@ -20,11 +20,11 @@ This creates:
 ### Phase Assignment
 
 At combat start, each combatant rolls their **initiative die** (based on size):
-- Tiny (d4) — Gnome, halfling
-- Small (d6) — Goblin, child
-- Medium (d8) — Human, elf, orc
-- Large (d10) — Ogre, giant
-- Huge+ (d12) — Dragon, titan
+- Tiny (d4): Gnome, halfling
+- Small (d6): Goblin, child
+- Medium (d8): Human, elf, orc
+- Large (d10): Ogre, giant
+- Huge+ (d12): Dragon, titan
 
 Roll the die: that's your starting phase.
 
@@ -125,7 +125,7 @@ Create variants with arbitrary phase counts and recovery bounds.
 
 1. **Enable RTI** in module settings
 2. **Set phase variant** (Standard, Gritty, Heroic, or custom)
-3. **Start combat** — each combatant rolls initiative die
+3. **Start combat**: each combatant rolls initiative die
 
 ### Action Phase
 
@@ -157,7 +157,7 @@ Use the **combat tracker** to:
 
 **Bonus actions:**
 - Bonus action attack (second weapon, Offhand, etc.)
-- Action Surge (fighter) — counts as bonus
+- Action Surge (fighter): counts as bonus
 - Bonus action spells (e.g., Healing Word)
 
 **Free actions (no recovery):**
@@ -191,7 +191,7 @@ Each attack rolls separately:
 - Fighter attacks twice with longsword (d8 each): roll d8 for first, d8 for second, take the **higher result** as next phase
 - OR roll once for "averaged" attack: roll d10 instead of d8 for the pair
 
-(Table's choice — discuss with your group.)
+(Table's choice: discuss with your group.)
 
 ---
 
@@ -306,7 +306,7 @@ A: Yes. Disable RTI for some combats, enable for others.
 
 **Q: How do crits and fumbles interact?**
 A: GM's call. Options:
-1. No change — always roll the normal recovery die
+1. No change: always roll the normal recovery die
 2. Crit upsizes once; fumble downsizes once
 3. Crit rolls twice and takes higher; fumble rolls twice and takes lower
 
@@ -318,4 +318,4 @@ A: Roll the initiative die **now**. When your trigger happens, you act and use t
 
 ---
 
-**Lisa's Angry Initiative v2.0.2** — Combat that rewards tactical thinking and action timing.
+**Lisa's Angry Initiative v2.0.2**: Combat that rewards tactical thinking and action timing.

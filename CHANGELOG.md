@@ -47,4 +47,4 @@
 
 ---
 
-**Lisa's Angry Initiative v2.0.2** — Foundry VTT combat reimagined through recovery time and phase-driven mechanics.
+**Lisa's Angry Initiative v2.0.2**: Foundry VTT combat reimagined through recovery time and phase-driven mechanics.

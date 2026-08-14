@@ -1,4 +1,4 @@
-# Lisa's Angry Initiative v2.0.2 — API Reference
+# Lisa's Angry Initiative v2.0.2: API Reference
 
 Complete API documentation for module integration and scripting.
 
@@ -21,10 +21,10 @@ const api = window.LisasAngryInitiative;
 Get the recovery die for an action type.
 
 **Parameters:**
-- `actionType` (string) — Action type key (attack, cantrip, spell, spellUpcast, action, bonusAction, reaction, movement)
-- `options` (object) — Optional context
-  - `actor` (Actor) — Actor for size-based die lookup
-  - `weapon` (Item) — Weapon for damage die extraction
+- `actionType` (string): Action type key (attack, cantrip, spell, spellUpcast, action, bonusAction, reaction, movement)
+- `options` (object): Optional context
+  - `actor` (Actor): Actor for size-based die lookup
+  - `weapon` (Item): Weapon for damage die extraction
 
 **Returns:** (string) Recovery die (d4, d6, d8, d10, d12)
 
@@ -41,7 +41,7 @@ console.log(die); // 'd8' (from weapon damage)
 Get the initiative die based on creature size.
 
 **Parameters:**
-- `actor` (Actor) — The actor to query
+- `actor` (Actor): The actor to query
 
 **Returns:** (string) Initiative die (d4 for tiny, d12 for gargantuan)
 
@@ -58,7 +58,7 @@ console.log(die); // 'd8' for medium creature
 Advance a die to the next size (d4 → d6 → d8 → d10 → d12).
 
 **Parameters:**
-- `die` (string) — Current die
+- `die` (string): Current die
 
 **Returns:** (string) Larger die
 
@@ -75,7 +75,7 @@ api.upsizeDie('d12'); // Returns 'd12' (capped)
 Reduce a die to the previous size (d12 → d10 → d8 → d6 → d4).
 
 **Parameters:**
-- `die` (string) — Current die
+- `die` (string): Current die
 
 **Returns:** (string) Smaller die
 
@@ -92,12 +92,12 @@ api.downsizeDie('d4'); // Returns 'd4' (capped)
 Apply advanced modifiers to a recovery die based on conditions and actions.
 
 **Parameters:**
-- `die` (string) — Current recovery die
-- `combatant` (Combatant) — Combat combatant
-- `options` (object) — Modifier options
-  - `bonusAction` (boolean) — Apply bonus action upsizing
-  - `checkedAttack` (boolean) — Apply checked attack downsizing
-  - `applyConditions` (boolean) — Apply condition-based modifiers
+- `die` (string): Current recovery die
+- `combatant` (Combatant): Combat combatant
+- `options` (object): Modifier options
+  - `bonusAction` (boolean): Apply bonus action upsizing
+  - `checkedAttack` (boolean): Apply checked attack downsizing
+  - `applyConditions` (boolean): Apply condition-based modifiers
 
 **Returns:** (string) Modified die
 
@@ -117,9 +117,9 @@ console.log(modified); // 'd8' (upsized for bonus action)
 Roll recovery and return the result.
 
 **Parameters:**
-- `combatant` (Combatant) — Combat combatant
-- `actionType` (string) — Action type key
-- `options` (object) — Optional modifiers
+- `combatant` (Combatant): Combat combatant
+- `actionType` (string): Action type key
+- `options` (object): Optional modifiers
 
 **Returns:** (Promise<object>) Recovery result with phase
 
@@ -140,8 +140,8 @@ console.log(result.die); // 'd8'
 Get recovery history for a combatant.
 
 **Parameters:**
-- `combatantId` (string) — Combatant ID
-- `limit` (number) — Max entries to return (default 10)
+- `combatantId` (string): Combatant ID
+- `limit` (number): Max entries to return (default 10)
 
 **Returns:** (array) Recovery history entries
 
@@ -160,7 +160,7 @@ history.forEach(entry => {
 Clear history for a specific combatant.
 
 **Parameters:**
-- `combatantId` (string) — Combatant ID
+- `combatantId` (string): Combatant ID
 
 ---
 
@@ -192,7 +192,7 @@ console.log(variant.phases); // 10
 Set the active phase variant.
 
 **Parameters:**
-- `variantId` (string) — Variant ID (standard, gritty, heroic, or custom)
+- `variantId` (string): Variant ID (standard, gritty, heroic, or custom)
 
 **Returns:** (boolean) Success
 
@@ -211,13 +211,13 @@ Get all available variants (built-in + custom).
 Create a custom phase variant.
 
 **Parameters:**
-- `variantId` (string) — Unique variant ID
+- `variantId` (string): Unique variant ID
 - `config` (object)
-  - `name` (string) — Variant name
-  - `description` (string) — Description
-  - `phases` (number) — Phase count (1-20)
-  - `minRecovery` (number) — Minimum recovery roll
-  - `maxRecovery` (number) — Maximum recovery roll
+  - `name` (string): Variant name
+  - `description` (string): Description
+  - `phases` (number): Phase count (1-20)
+  - `minRecovery` (number): Minimum recovery roll
+  - `maxRecovery` (number): Maximum recovery roll
 
 **Returns:** (object) Created variant
 
@@ -240,7 +240,7 @@ api.setActiveVariant('mythic');
 Delete a custom variant.
 
 **Parameters:**
-- `variantId` (string) — Custom variant ID
+- `variantId` (string): Custom variant ID
 
 **Returns:** (boolean) Success (returns false if trying to delete built-in)
 
@@ -259,7 +259,7 @@ Get the phase count for the active variant.
 Ensure a phase is within variant bounds.
 
 **Parameters:**
-- `phase` (number) — Phase to constrain
+- `phase` (number): Phase to constrain
 
 **Returns:** (number) Constrained phase (1 to maxPhases)
 
@@ -270,7 +270,7 @@ Ensure a phase is within variant bounds.
 Ensure a recovery roll is within variant bounds.
 
 **Parameters:**
-- `rollResult` (number) — Roll result to constrain
+- `rollResult` (number): Roll result to constrain
 
 **Returns:** (number) Constrained value
 
@@ -283,11 +283,11 @@ Ensure a recovery roll is within variant bounds.
 Create a custom recovery table.
 
 **Parameters:**
-- `tableId` (string) — Unique table ID
+- `tableId` (string): Unique table ID
 - `config` (object)
-  - `name` (string) — Table name
-  - `description` (string) — Description
-  - `rules` (object) — Recovery rules per action type
+  - `name` (string): Table name
+  - `description` (string): Description
+  - `rules` (object): Recovery rules per action type
 
 **Returns:** (object) Created table
 
@@ -311,8 +311,8 @@ api.createTable('rogue-rules', {
 Get recovery die from a custom table.
 
 **Parameters:**
-- `tableId` (string) — Table ID
-- `actionType` (string) — Action type
+- `tableId` (string): Table ID
+- `actionType` (string): Action type
 
 **Returns:** (string) Recovery die or null
 
@@ -331,7 +331,7 @@ Get all custom recovery tables.
 Delete a custom table.
 
 **Parameters:**
-- `tableId` (string) — Table ID
+- `tableId` (string): Table ID
 
 **Returns:** (boolean) Success
 
@@ -342,8 +342,8 @@ Delete a custom table.
 Update rules in a custom table.
 
 **Parameters:**
-- `tableId` (string) — Table ID
-- `rules` (object) — Rules to merge
+- `tableId` (string): Table ID
+- `rules` (object): Rules to merge
 
 **Returns:** (boolean) Success
 
@@ -356,18 +356,18 @@ Update rules in a custom table.
 Register a hook handler.
 
 **Parameters:**
-- `hookId` (string) — Hook ID
-- `handler` (function) — Handler function receiving context
+- `hookId` (string): Hook ID
+- `handler` (function): Handler function receiving context
 
 **Available hooks:**
-- `beforePhaseChange` — Before phase updates
-- `afterPhaseChange` — After phase updates
-- `beforeRecoveryRoll` — Before recovery is rolled
-- `afterRecoveryRoll` — After recovery is rolled
-- `beforeCombatStart` — Combat starts
-- `afterCombatEnd` — Combat ends
-- `onConditionApplied` — Condition added
-- `onConditionRemoved` — Condition removed
+- `beforePhaseChange`: Before phase updates
+- `afterPhaseChange`: After phase updates
+- `beforeRecoveryRoll`: Before recovery is rolled
+- `afterRecoveryRoll`: After recovery is rolled
+- `beforeCombatStart`: Combat starts
+- `afterCombatEnd`: Combat ends
+- `onConditionApplied`: Condition added
+- `onConditionRemoved`: Condition removed
 
 **Example:**
 ```javascript
@@ -383,8 +383,8 @@ api.registerHook('afterRecoveryRoll', (context) => {
 Manually fire a hook.
 
 **Parameters:**
-- `hookId` (string) — Hook ID
-- `context` (object) — Context data
+- `hookId` (string): Hook ID
+- `context` (object): Context data
 
 ---
 
@@ -393,8 +393,8 @@ Manually fire a hook.
 Unregister a specific hook handler.
 
 **Parameters:**
-- `hookId` (string) — Hook ID
-- `handler` (function) — Handler to remove
+- `hookId` (string): Hook ID
+- `handler` (function): Handler to remove
 
 ---
 
@@ -413,7 +413,7 @@ Get all registered hooks and handler counts.
 Get phase indicator for a token.
 
 **Parameters:**
-- `tokenId` (string) — Token ID
+- `tokenId` (string): Token ID
 
 **Returns:** (object) Indicator data or null
 
@@ -424,8 +424,8 @@ Get phase indicator for a token.
 Set phase indicator for a token.
 
 **Parameters:**
-- `tokenId` (string) — Token ID
-- `phase` (number) — Phase (1-10 or variant max)
+- `tokenId` (string): Token ID
+- `phase` (number): Phase (1-10 or variant max)
 
 **Returns:** (boolean) Success
 
@@ -436,7 +436,7 @@ Set phase indicator for a token.
 Remove phase indicator from a token.
 
 **Parameters:**
-- `tokenId` (string) — Token ID
+- `tokenId` (string): Token ID
 
 ---
 
@@ -519,4 +519,4 @@ if (game.combat?.current?.combatantId) {
 
 ---
 
-**Lisa's Angry Initiative v2.0.2** — Build your own combat extensions with powerful integration hooks.
+**Lisa's Angry Initiative v2.0.2**: Build your own combat extensions with powerful integration hooks.
