@@ -1,6 +1,6 @@
 # Lisa's Angry Initiative v2.0.2
 
-Recovery Time Initiative v2 for Foundry VTT and D&D5e — Now free and open-source!
+Recovery Time Initiative v2 for Foundry VTT and D&D5e Now free and open-source!
 
 Based on [The Angry GM's Recovery Time Initiative](https://theangrygm.com/fixing-initiative-because-i-want-to-part-ii-angrys-recovery-time-initiative-system/), this v2.0 module expands combat into a phase-driven loop with advanced modifiers, phase variants, custom recovery tables, and deep integration hooks.
 
