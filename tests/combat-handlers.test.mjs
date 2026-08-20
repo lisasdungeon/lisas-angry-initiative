@@ -37,7 +37,7 @@ test('getActionTypeFromItem: falls back to "item" for unrecognized inputs', () =
 
 test('getActionTypeFromItem: spell classification wins over name', () => {
   // A spell named "Dash" should classify as cantrip (level 0) or spell,
-  // not "dash" — type takes precedence over name.
+  // not "dash"  -  type takes precedence over name.
   assert.equal(
     getActionTypeFromItem({ type: 'spell', system: { level: 0 }, name: 'Dash' }),
     'cantrip',

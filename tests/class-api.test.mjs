@@ -183,7 +183,7 @@ test('public API exposes subsystem methods after init', async () => {
 });
 
 test('registerHooks: handlers are callable through Hooks', async () => {
-  // Fresh hooks mock to isolate — fire every registered wrapper for func coverage
+  // Fresh hooks mock to isolate  -  fire every registered wrapper for func coverage
   const hooks = (await import('./foundry-mock.mjs')).createHooksMock();
   globalThis.Hooks = hooks;
   LisasAngryInitiative.isInitialized = false;
@@ -210,7 +210,7 @@ test('registerHooks: handlers are callable through Hooks', async () => {
   await hooks.getHandlers('updateCombat')[0](emptyCombat, {}, {}, 'gm-1');
   await hooks.getHandlers('updateCombatant')[0](combatant, {});
 
-  // Minimal html stub — no jsdom required for early-return render paths
+  // Minimal html stub  -  no jsdom required for early-return render paths
   const htmlStub = {
     jquery: true,
     length: 0,

@@ -1,7 +1,7 @@
 // Guards the HTML-escaping helper used everywhere this module interpolates
 // combatant/actor names into chat cards and dialog content (see
 // ui-handlers.js). Foundry modules ship independently of one another, so this
-// only exercises this module's own copy — no dependency on any sibling module.
+// only exercises this module's own copy  -  no dependency on any sibling module.
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { escapeHtml } from '../scripts/utils/escapeHtml.js';

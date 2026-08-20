@@ -1,4 +1,4 @@
-// Covers LisasAngryInitiative.applyAdvancedModifiers — the previously-orphaned
+// Covers LisasAngryInitiative.applyAdvancedModifiers  -  the previously-orphaned
 // condition/bonus-action/checked-attack die adjustment logic that rollRecovery()
 // now calls for the condition-adjustment branch (recovery.js). Importing the
 // class module is safe in Node: every Foundry global it touches (game, Hooks,

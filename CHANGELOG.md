@@ -1,12 +1,15 @@
 # Changelog
 
+## 2.0.4
+
+- README version now matches the manifest
+
 ## 2.0.3
 
-- Compliance and hardening release: sole Lisa's Dungeon authorship and contact fields (Discord MystryssLysa, email Lisasdungeon@gmail.com, Patreon LisasDungeon); lazy loading / trigger-based startup where needed; 500 LOC file cap; full source line coverage; no emoji or AI references in the shipped package.
-- Compliance pass: sole author Lisa's Dungeon with Discord MystryssLysa / email Lisasdungeon@gmail.com / Patreon LisasDungeon; enforce 500 LOC file cap; remove non-compliant branding and symbols where present.
-- Fixed `test:coverage` script glob so Node picks up every `tests/**/*.test.mjs` file.
-- Lazy-load the core class on Foundry `init` instead of importing it at module evaluation.
-- Expanded unit tests (Foundry mocks) to 100% source line and function coverage across all scripts.
+- Sole author Lisa's Dungeon with Discord MystryssLysa, email Lisasdungeon@gmail.com, and Patreon LisasDungeon
+- Fixed `test:coverage` script glob so Node picks up every `tests/**/*.test.mjs` file
+- Lazy-load the core class on Foundry `init` instead of importing it at module evaluation
+- Expanded unit tests (Foundry mocks) to 100% source line and function coverage across all scripts
 
 ## [2.0.2] - 2026-07-29
 
