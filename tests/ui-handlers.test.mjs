@@ -76,7 +76,10 @@ test('registerSettings: ENABLE_CORE onChange triggers cleanup when GM confirms d
     }
   });
   const field = g.settings._registrations.find((r) => r.key === SETTINGS.ENABLE_CORE);
-  globalThis.Dialog = { confirm: async () => true };
+  globalThis.foundry = globalThis.foundry || { applications: { api: {} } };
+  globalThis.foundry.applications = globalThis.foundry.applications || { api: {} };
+  globalThis.foundry.applications.api = globalThis.foundry.applications.api || {};
+  globalThis.foundry.applications.api.DialogV2 = { confirm: async () => true };
   await field.data.onChange(false);
   assert.equal(cleaned, true);
   globalThis.game = game;
@@ -96,7 +99,7 @@ test('registerSettings: ENABLE_CORE onChange no-ops when enabling or non-GM', as
   globalThis.game.user = { isGM: false };
   await field.data.onChange(false);
   assert.equal(cleaned, 0);
-  globalThis.Dialog = { confirm: async () => false };
+  globalThis.foundry.applications.api.DialogV2 = { confirm: async () => false };
   globalThis.game.user = { isGM: true };
   await field.data.onChange(false);
   assert.equal(cleaned, 0);

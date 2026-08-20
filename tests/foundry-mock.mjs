@@ -151,7 +151,8 @@ export function installGlobals(extra = {}) {
     applications: {
       api: {
         DialogV2: {
-          wait: async () => null
+          wait: async () => null,
+          confirm: async () => true
         }
       }
     }

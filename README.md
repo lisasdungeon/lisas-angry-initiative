@@ -1,6 +1,6 @@
 # Lisa's Angry Initiative
 
-- Version: `2.0.4`
+- Version: `2.0.5`
 - Compatibility: Foundry VTT `13+` (verified `14`)
 - License: MIT
 

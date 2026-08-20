@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.5
+
+- Disable-core cleanup confirmation uses DialogV2 instead of the deprecated V1 Dialog
+- Manifest includes MIT license and download URL `releases/latest/download/module.zip`
+
 ## 2.0.4
 
 - README version now matches the manifest

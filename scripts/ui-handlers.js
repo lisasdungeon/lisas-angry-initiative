@@ -34,8 +34,8 @@ export function registerSettings(moduleApi) {
             default: field.default,
             onChange: field.key === SETTINGS.ENABLE_CORE ? async (enabled) => {
                 if (enabled || !game.user.isGM) return;
-                const confirmed = await Dialog.confirm({
-                    title: localize("Dialogs.CleanupTitle"),
+                const confirmed = await foundry.applications.api.DialogV2.confirm({
+                    window: { title: localize("Dialogs.CleanupTitle") },
                     content: `<p>${localize("Dialogs.CleanupPrompt")}</p>`,
                     defaultYes: true
                 });
